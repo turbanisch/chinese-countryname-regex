@@ -1,0 +1,289 @@
+country.name.en,country.name.en.regex,iso3c,cldr.short.zh
+Afghanistan,afghan,AFG,阿富汗
+Åland Islands,^[å|a]land,ALA,奥兰群岛
+Albania,albania,ALB,阿尔巴尼亚
+Algeria,algeria,DZA,阿尔及利亚
+American Samoa,^(?=.*americ).*samoa,ASM,美属萨摩亚
+Andorra,andorra,AND,安道尔
+Angola,angola,AGO,安哥拉
+Anguilla,anguill?a,AIA,安圭拉
+Antarctica,antarctica,ATA,南极洲
+Antigua & Barbuda,antigua,ATG,安提瓜和巴布达
+Argentina,argentin,ARG,阿根廷
+Armenia,armenia,ARM,亚美尼亚
+Aruba,^(?!.*bonaire).*\baruba,ABW,阿鲁巴
+Australia,australia,AUS,澳大利亚
+Austria,^(?!.*hungary).*austria|\baustri.*\bemp,AUT,奥地利
+Austria-Hungary,austria-hungary,NA,NA
+Azerbaijan,azerbaijan,AZE,阿塞拜疆
+Baden,baden,NA,NA
+Bahamas,bahamas,BHS,巴哈马
+Bahrain,bahrain,BHR,巴林
+Bangladesh,bangladesh|^(?=.*east).*paki?stan,BGD,孟加拉国
+Barbados,barbados,BRB,巴巴多斯
+Bavaria,bavaria,NA,NA
+Belarus,belarus|byelo,BLR,白俄罗斯
+Belgium,^(?!.*luxem).*belgium,BEL,比利时
+Belize,belize|^(?=.*british).*honduras,BLZ,伯利兹
+Benin,benin|dahome,BEN,贝宁
+Bermuda,bermuda,BMU,百慕大
+Bhutan,bhutan,BTN,不丹
+Bolivia,bolivia,BOL,玻利维亚
+Bosnia & Herzegovina,herzegovina|bosnia,BIH,波斯尼亚和黑塞哥维那
+Botswana,botswana|bechuana,BWA,博茨瓦纳
+Bouvet Island,bouvet,BVT,布韦岛
+Brazil,brazil,BRA,巴西
+British Indian Ocean Territory,british.?indian.?ocean,IOT,英属印度洋领地
+British Virgin Islands,^(?=.*\bu\.?\s?k).*virgin|^(?=.*brit).*virgin|^(?=.*kingdom).*virgin,VGB,英属维尔京群岛
+Brunei,brunei,BRN,文莱
+Brunswick,brunswick,NA,NA
+Bulgaria,bulgaria,BGR,保加利亚
+Burkina Faso,burkina|\bfaso|upper.?volta,BFA,布基纳法索
+Burundi,burundi,BDI,布隆迪
+Cambodia,cambodia|kampuchea|khmer,KHM,柬埔寨
+Cameroon,cameroon,CMR,喀麦隆
+Canada,canada,CAN,加拿大
+Cape Verde,verde,CPV,佛得角
+Caribbean Netherlands,^(?=.*bonaire).*eustatius|^(?=.*carib).*netherlands|\bbes.?islands,BES,荷属加勒比区
+Cayman Islands,cayman,CYM,开曼群岛
+Central African Republic,\bcentral.african.rep,CAF,中非共和国
+Chad,\bchad,TCD,乍得
+Channel Islands,\bchannel.islands,NA,NA
+Chile,\bchile,CHL,智利
+China,^(?!.*\bmac)(?!.*\bhong)(?!.*\btai)(?!.*\brep).*china|^(?=.*peo)(?=.*rep).*china,CHN,中国
+Christmas Island,christmas,CXR,圣诞岛
+Cocos (Keeling) Islands,\bcocos|keeling,CCK,科科斯（基林）群岛
+Colombia,colombia,COL,哥伦比亚
+Comoros,comoro,COM,科摩罗
+Congo - Brazzaville,^(?!.*\bd.m)(?!.*\bd[\.]?r)(?!.*kinshasa)(?!.*zaire)(?!.*belg)(?!.*l.opoldville)(?!.*free).*\bcongo,COG,刚果（布）
+Congo - Kinshasa,\bd.m.*congo|congo.*\bd.m|congo.*\bd[\.]?r|\bd[\.]?r.*congo|belgian.?congo|congo.?free.?state|kinshasa|zaire|l.opoldville|drc|droc|rdc,COD,刚果（金）
+Cook Islands,\bcook,COK,库克群岛
+Costa Rica,costa.?rica,CRI,哥斯达黎加
+Côte d’Ivoire,ivoire|ivory,CIV,科特迪瓦
+Croatia,croatia,HRV,克罗地亚
+Cuba,\bcuba,CUB,古巴
+Curaçao,^(?!.*bonaire).*\bcura(c|ç)ao,CUW,库拉索
+Cyprus,cyprus,CYP,塞浦路斯
+Czechia,^(?=.*rep).*czech|czechia|bohemia,CZE,捷克
+Czechoslovakia,czechoslovakia,NA,NA
+Denmark,denmark,DNK,丹麦
+Djibouti,djibouti,DJI,吉布提
+Dominica,dominica(?!n),DMA,多米尼克
+Dominican Republic,dominican.rep,DOM,多米尼加共和国
+Ecuador,ecuador,ECU,厄瓜多尔
+Egypt,egypt,EGY,埃及
+El Salvador,el.?salvador,SLV,萨尔瓦多
+Equatorial Guinea,guine.*eq|eq.*guine|^(?=.*span).*guinea,GNQ,赤道几内亚
+Eritrea,eritrea,ERI,厄立特里亚
+Estonia,estonia,EST,爱沙尼亚
+Eswatini,swaziland|eswatini,SWZ,斯威士兰
+Ethiopia,ethiopia|abyssinia,ETH,埃塞俄比亚
+Falkland Islands,falkland|malvinas,FLK,福克兰群岛
+Faroe Islands,faroe|faeroe,FRO,法罗群岛
+Fiji,fiji,FJI,斐济
+Finland,finland,FIN,芬兰
+France,^(?!.*\bdep)(?!.*martinique).*france|french.?republic|\bgaul,FRA,法国
+French Guiana,french.?gu(y|i)ana,GUF,法属圭亚那
+French Polynesia,french.?polynesia|tahiti,PYF,法属波利尼西亚
+French Southern Territories,french.?southern,ATF,法属南部领地
+Gabon,gabon,GAB,加蓬
+Gambia,gambia,GMB,冈比亚
+Georgia,^(?!.*south).*georgia,GEO,格鲁吉亚
+German Democratic Republic,german.?democratic.?rep|democratic.?rep.*germany|east.germany|germany.*east,NA,NA
+Germany,^(?!.*east).*germany|^(?=.*\bfed.*\brep).*german,DEU,德国
+Ghana,ghana|gold.?coast,GHA,加纳
+Gibraltar,gibraltar,GIB,直布罗陀
+Greece,greece|hellenic|hellas,GRC,希腊
+Greenland,greenland,GRL,格陵兰
+Grenada,grenada,GRD,格林纳达
+Guadeloupe,guadeloupe,GLP,瓜德罗普
+Guam,\bguam,GUM,关岛
+Guatemala,guatemala,GTM,危地马拉
+Guernsey,guernsey,GGY,根西岛
+Guinea,^(?!.*eq)(?!.*span)(?!.*bissau)(?!.*portu)(?!.*new).*guinea,GIN,几内亚
+Guinea-Bissau,bissau|^(?=.*portu).*guinea,GNB,几内亚比绍
+Guyana,^guyana|british.?gu(y|i)ana,GUY,圭亚那
+Haiti,haiti,HTI,海地
+Hamburg,hamburg,NA,NA
+Hanover,hanover,NA,NA
+Heard & McDonald Islands,heard.*mcdonald,HMD,赫德岛和麦克唐纳群岛
+Hesse Electoral,hesse.*lectoral,NA,NA
+Hesse Grand Ducal,hess.*gran.*ducal,NA,NA
+Hesse-Darmstadt,hesse.darmstadt,NA,NA
+Hesse-Kassel,hesse.kassel,NA,NA
+Honduras,^(?!.*brit).*honduras,HND,洪都拉斯
+Hong Kong SAR China,hong.?kong,HKG,香港
+Hungary,^(?!.*austr).*hungary,HUN,匈牙利
+Iceland,iceland,ISL,冰岛
+India,india(?!.*ocea),IND,印度
+Indonesia,indonesia,IDN,印度尼西亚
+Iran,\biran|persia,IRN,伊朗
+Iraq,\biraq|mesopotamia,IRQ,伊拉克
+Ireland,^(?!.*north).*\bireland,IRL,爱尔兰
+Isle of Man,^(?=.*isle).*\bman,IMN,马恩岛
+Israel,israel,ISR,以色列
+Italy,italy,ITA,意大利
+Jamaica,jamaica,JAM,牙买加
+Japan,japan,JPN,日本
+Jersey,jersey,JEY,泽西岛
+Jordan,jordan,JOR,约旦
+Kazakhstan,kazak,KAZ,哈萨克斯坦
+Kenya,kenya|british.?east.?africa|east.?africa.?prot,KEN,肯尼亚
+Kiribati,kiribati,KIR,基里巴斯
+Kosovo,kosovo,NA,科索沃
+Kuwait,kuwait,KWT,科威特
+Kyrgyzstan,kyrgyz|kirghiz,KGZ,吉尔吉斯斯坦
+Laos,\blaos?\b,LAO,老挝
+Latvia,latvia,LVA,拉脱维亚
+Lebanon,lebanon,LBN,黎巴嫩
+Lesotho,lesotho|basuto,LSO,莱索托
+Liberia,liberia,LBR,利比里亚
+Libya,libya,LBY,利比亚
+Liechtenstein,liechtenstein,LIE,列支敦士登
+Lithuania,lithuania,LTU,立陶宛
+Luxembourg,^(?!.*belg).*luxem,LUX,卢森堡
+Macao SAR China,maca(o|u),MAC,澳门
+Madagascar,madagascar|malagasy,MDG,马达加斯加
+Malawi,malawi|nyasa,MWI,马拉维
+Malaysia,malaysia,MYS,马来西亚
+Maldives,maldive,MDV,马尔代夫
+Mali,\bmali\b,MLI,马里
+Malta,\bmalta,MLT,马耳他
+Marshall Islands,marshall,MHL,马绍尔群岛
+Martinique,martinique,MTQ,马提尼克
+Mauritania,mauritania,MRT,毛里塔尼亚
+Mauritius,mauritius,MUS,毛里求斯
+Mayotte,\bmayotte,MYT,马约特
+Mecklenburg Schwerin,mecklenbur.*schwerin,NA,NA
+Mexico,\bmexic,MEX,墨西哥
+Micronesia (Federated States of),fed.*micronesia|micronesia.*fed,FSM,NA
+Modena,modena,NA,NA
+Moldova,moldov|b(a|e)ssarabia,MDA,摩尔多瓦
+Monaco,monaco,MCO,摩纳哥
+Mongolia,mongolia,MNG,蒙古
+Montenegro,^(?!.*serbia).*montenegro,MNE,黑山
+Montserrat,montserrat,MSR,蒙特塞拉特
+Morocco,morocco|\bmaroc,MAR,摩洛哥
+Mozambique,mozambique,MOZ,莫桑比克
+Myanmar (Burma),myanmar|burma,MMR,缅甸
+Namibia,namibia,"NAM",纳米比亚
+Nassau,nassau,NA,NA
+Nauru,nauru,NRU,瑙鲁
+Nepal,nepal,NPL,尼泊尔
+Netherlands,^(?!.*\bant)(?!.*\bcarib).*netherlands,NLD,荷兰
+Netherlands Antilles,netherlands.antil|dutch.antil,NA,NA
+New Caledonia,new.?caledonia,NCL,新喀里多尼亚
+New Zealand,new.?zealand,NZL,新西兰
+Nicaragua,nicaragua,NIC,尼加拉瓜
+Niger,\bniger(?!ia),NER,尼日尔
+Nigeria,nigeria,NGA,尼日利亚
+Niue,niue,NIU,纽埃
+Norfolk Island,norfolk,NFK,诺福克岛
+North Korea,dprk|d.p.r.k|korea.+(d.p.r|dpr|north|dem.*rep.*)|(d.p.r|dpr|north|dem.*rep.*).+korea,PRK,朝鲜
+North Macedonia,macedonia|fyrom,MKD,北马其顿
+Northern Mariana Islands,mariana,MNP,北马里亚纳群岛
+Norway,norway,NOR,挪威
+Oldenburg,oldenburg,NA,NA
+Oman,\boman|trucial,OMN,阿曼
+Orange Free State,orange.free.state,NA,NA
+Pakistan,^(?!.*east).*paki?stan,PAK,巴基斯坦
+Palau,palau,PLW,帕劳
+Palestinian Territories,palestin|\bgaza|west.?bank,PSE,巴勒斯坦
+Panama,panama,PAN,巴拿马
+Papua New Guinea,papua|new.?guinea,PNG,巴布亚新几内亚
+Paraguay,paraguay,PRY,巴拉圭
+Parma,parma,NA,NA
+Peru,peru,PER,秘鲁
+Philippines,philippines,PHL,菲律宾
+Piedmont-Sardinia,piedmont.sardinia,NA,NA
+Pitcairn Islands,pitcairn,PCN,皮特凯恩群岛
+Poland,poland,POL,波兰
+Portugal,portugal,PRT,葡萄牙
+Prussia,prussia,NA,NA
+Puerto Rico,puerto.?rico,PRI,波多黎各
+Qatar,qatar,QAT,卡塔尔
+Republic of Vietnam,^republic.of.viet.?nam|south.viet.?nam|viet.?nam.south,NA,NA
+Réunion,r(e|é)union,REU,留尼汪
+Romania,r(o|u|ou)mania,ROU,罗马尼亚
+Russia,\brussia|soviet.?union|u\.?s\.?s\.?r|socialist.?republics,RUS,俄罗斯
+Rwanda,rwanda,RWA,卢旺达
+Saint Martin (French part),saint.martin.*FR|^(?=.*collectivity).*martin|^(?=.*france).*martin(?!ique)|^(?=.*french).*martin(?!ique),MAF,NA
+Samoa,^(?!.*amer).*samoa,WSM,萨摩亚
+San Marino,san.?marino,SMR,圣马力诺
+São Tomé & Príncipe,\bs(a|ã)o.?tom(e|é),STP,圣多美和普林西比
+Sardinia,^(?!.*piedmont)(?!.*italy).*\bsardinia,NA,NA
+Saudi Arabia,\bsa\w*.?arabia,SAU,沙特阿拉伯
+Saxe-Weimar-Eisenach,saxe.weimar.eisenach,NA,NA
+Saxony,saxony,NA,NA
+Senegal,senegal,SEN,塞内加尔
+Serbia,^(?!.*monte).*serbia,SRB,塞尔维亚
+Serbia and Montenegro,serbia.and.montenegro,NA,NA
+Seychelles,seychell,SYC,塞舌尔
+Sierra Leone,sierra,SLE,塞拉利昂
+Singapore,singapore,SGP,新加坡
+Sint Maarten,^(?!.*martin)(?!.*saba).*maarten,SXM,荷属圣马丁
+Slovakia,^(?!.*cze).*slovak,SVK,斯洛伐克
+Slovenia,slovenia,SVN,斯洛文尼亚
+Solomon Islands,solomon,SLB,所罗门群岛
+Somalia,somalia,SOM,索马里
+Somaliland,somaliland,NA,NA
+South Africa,south.africa|s\\..?africa,ZAF,南非
+South Georgia & South Sandwich Islands,south.?georgia|sandwich,SGS,南乔治亚和南桑威奇群岛
+South Korea,^(?!.*d.*p.*r)(?!.*democrat)(?!.*dem.*rep)(?!.*people)(?!.*north).*\bkorea(?!.*d.*p.*r)(?!.*dem.*rep),KOR,韩国
+South Sudan,\bs\w*.?sudan,SSD,南苏丹
+Spain,spain,ESP,西班牙
+Sri Lanka,sri.?lanka|ceylon,LKA,斯里兰卡
+St. Barthélemy,barth(e|é)lemy,BLM,圣巴泰勒米
+St. Helena,helena,SHN,圣赫勒拿
+St. Kitts & Nevis,kitts|\bnevis,KNA,圣基茨和尼维斯
+St. Lucia,\blucia,LCA,圣卢西亚
+St. Pierre & Miquelon,miquelon,SPM,圣皮埃尔和密克隆群岛
+St. Vincent & Grenadines,vincent,VCT,圣文森特和格林纳丁斯
+Sudan,^(?!.*\bs(?!u)).*sudan,SDN,苏丹
+Suriname,surinam|dutch.?gu(y|i)ana,SUR,苏里南
+Svalbard & Jan Mayen,svalbard,SJM,斯瓦尔巴和扬马延
+Sweden,sweden,SWE,瑞典
+Switzerland,switz|swiss,CHE,瑞士
+Syria,syria,SYR,叙利亚
+Taiwan,taiwan|taipei|formosa|^(?!.*peo)(?=.*rep).*china,TWN,台湾
+Tajikistan,tajik,TJK,塔吉克斯坦
+Tanzania,tanzania,TZA,坦桑尼亚
+Thailand,thailand|\bsiam,THA,泰国
+Timor-Leste,^(?=.*leste).*timor|^(?=.*east).*timor,TLS,东帝汶
+Togo,togo,TGO,多哥
+Tokelau,tokelau,TKL,托克劳
+Tonga,tonga,TON,汤加
+Trinidad & Tobago,trinidad|tobago,TTO,特立尼达和多巴哥
+Tunisia,tunisia,TUN,突尼斯
+Turkey,turkey,TUR,土耳其
+Turkmenistan,turkmen,TKM,土库曼斯坦
+Turks & Caicos Islands,turks,TCA,特克斯和凯科斯群岛
+Tuscany,tuscany,NA,NA
+Tuvalu,tuvalu,TUV,图瓦卢
+Two Sicilies,two.?sicilies,NA,NA
+U.S. Virgin Islands,^(?=.*\bu\.?\s?s).*virgin|^(?=.*states).*virgin,VIR,美属维尔京群岛
+Uganda,uganda,UGA,乌干达
+Ukraine,ukrain,UKR,乌克兰
+United Arab Emirates,emirates|^u\.?a\.?e\.?$|united.?arab.?em,ARE,阿拉伯联合酋长国
+United Arab Republic,united.arab.republic,NA,NA
+United Kingdom,united.?kingdom|britain|^u\.?k\.?$,GBR,英国
+United Province CA,united.province.ca,NA,NA
+United States,united.?states\b(?!.*islands)|\bu\.?s\.?a\.?\b|^\s*u\.?s\.?\b(?!.*islands),USA,美国
+United States Minor Outlying Islands (the),minor.?outlying.?is,UMI,NA
+Uruguay,uruguay,URY,乌拉圭
+Uzbekistan,uzbek,UZB,乌兹别克斯坦
+Vanuatu,vanuatu|new.?hebrides,VUT,瓦努阿图
+Vatican City,holy.?see|vatican|papal.?st,VAT,梵蒂冈
+Venezuela,venezuela,VEN,委内瑞拉
+Vietnam,^(?!south)(?!republic).*viet.?nam(?!.*south)|democratic.republic.of.vietnam|socialist.republic.of.viet.?nam|north.viet.?nam|viet.?nam.north,VNM,越南
+Wallis & Futuna,futuna|wallis,WLF,瓦利斯和富图纳
+Western Sahara,western.sahara,ESH,西撒哈拉
+Wuerttemburg,w(ue|ü)rttemburg,NA,NA
+Würtemberg,w.rtemberg,NA,NA
+Yemen,^(?!.*arab)(?!.*north)(?!.*sana)(?!.*peo)(?!.*dem)(?!.*south)(?!.*aden)(?!.*\bp\.?d\.?r).*yemen,YEM,也门
+Yemen Arab Republic,^(?=.*arab).*yemen|^(?=.*north).*yemen|^(?=.*sana).*yemen,NA,NA
+Yemen People's Republic,^(?=.*peo).*yemen|^(?!.*rep)(?=.*dem).*yemen|^(?=.*south).*yemen|^(?=.*aden).*yemen|^(?=.*\bp\.?d\.?r).*yemen,NA,NA
+Yugoslavia,yugoslavia,NA,NA
+Zambia,zambia|northern.?rhodesia,ZMB,赞比亚
+Zanzibar,zanzibar,NA,NA
+Zimbabwe,zimbabwe|^(?!.*northern).*rhodesia,ZWE,津巴布韦
