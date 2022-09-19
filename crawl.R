@@ -39,32 +39,9 @@ df <- tibble(
 # complete links to variant-specific site (here: simplified)
 str_c(base_url, variant[1], df$url, sep = "/")
 
-# define function to collect names (in bold) from first paragraph on Wikipedia country page
-get_names <- function(url) {
-  
-  output <- url %>% 
-    read_html() %>% 
-    html_elements("#mw-content-text > div:nth-child(1) > p:nth-of-type(1) > b") %>% 
-    html_text2()
-  
-  if (is_empty(output)) {
-  # if a page has an empty first paragraph, try the second one
-    output <- url %>% 
-      read_html() %>% 
-      html_elements("#mw-content-text > div:nth-child(1) > p:nth-of-type(2) > b") %>% 
-      html_text2()
-  }
-  
-  if (str_detect(output[1], "^\\.mw-parser-output")) {
-    # if parser gibberish is included, extract Chinese characters and concatenate
-    output[1] <- output[1] %>% str_extract_all("\\p{script=Han}+") %>% unlist() %>% str_c(collapse = "")
-  }
-  
-  return(output)
-}
-
 # apply function to all countries
 output <- map(
   str_c(base_url, variant[1], df$url, sep = "/"),
   get_names
 )
+
