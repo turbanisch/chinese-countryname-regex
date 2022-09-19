@@ -45,26 +45,3 @@ output <- map(
   get_names
 )
 
-get_official_name <- function(url) {
-  url %>% 
-    read_html() %>% 
-    html_elements(".fn") %>% 
-    html_text2() %>% 
-    # select only first element
-    .[1] %>% 
-    clean_chinese_text()
-  
-}
-
-# apply function to all countries
-output_official <- map(
-  str_c(base_url, variant[1], df$url, sep = "/"),
-  get_official_name
-)
-
-output_official_clean <- map(
-  output_official,
-  ~ .x %>% 
-    .[1] %>% 
-    str_extract("\\p{script=Han}+")
-)
