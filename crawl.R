@@ -98,7 +98,7 @@ write_csv(dict_common, "output/dict_common.csv")
 # add regex ---------------------------------------------------------------
 
 # load
-simplified_regex <- read_csv("data/dict_common_regex_simplified.csv") 
+simplified_regex <- read_csv("data-raw/dict_common_regex_simplified.csv") 
 
 simplified_regex <- simplified_regex %>% 
   select(short_name_en, regex) %>% 
