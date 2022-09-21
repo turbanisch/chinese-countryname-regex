@@ -42,7 +42,7 @@ case:
     mountain”) in Mainland China. People on Taiwan, on the other hand,
     kept their phonetic transliteration *Mengteneigeluo* 蒙特內哥羅.
 
-## Solutions
+## Proposed solution
 
 The issue of different scripts could be solved in two ways: either by
 harmonizing the scripts by some automatic conversion procedure or
@@ -77,7 +77,15 @@ described above, as the following example of Montenegro shows:
 
 ![Mainland](img/montenegro_mainland.png)
 
+<figcaption align="center">
+Localization for Mainland China
+</figcaption>
+
 ![Taiwan](img/montenegro_taiwan.png)
+
+<figcaption align="center">
+Localization for Taiwan
+</figcaption>
 
 ``` r
 # different unicode character, invisible
