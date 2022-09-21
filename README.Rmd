@@ -32,7 +32,7 @@ This is especially true for proper names like country names. Not only can they v
 2. **Different transliterations**. Many country names have been phonetically adapted from other languages and translators in every Chinese-speaking region have taken their artistic liberties when doing so. For example, Hong Kongers refer to Barbados as *Babaduosi* 巴巴多斯 whereas people from Taiwan call it *Babeiduo* 巴貝多.
 3. **Alternative names**. Instead of converting a country name according to its sound, Chinese-speaking people in some regions have also opted to convert the original meaning of the country name into Chinese. For example, Montenegro is *Heishan* 黑山 ("black mountain") in Mainland China. People on Taiwan, on the other hand, kept their phonetic transliteration *Mengteneigeluo* 蒙特內哥羅.
 
-## Proposed solution
+## Solutions
 
 The issue of different scripts could be solved in two ways: either by harmonizing the scripts by some automatic conversion procedure or writing complex regular expressions that match any script. I discuss the two below in the section on testing my regular expressions and focus on the second issue here. 
 
@@ -44,10 +44,8 @@ Wikipedia even offers an [overview page](https://zh.wikipedia.org/zh-cn/世界�
 From each country page (in each language variant), I scrape the article heading as the short name, the first name in the first sentence as the official name, and all other names in the first sentence (typeset in bold) as name variants. Wikipedia's localization not only takes care of character-by-character conversion but also reflects differences in usage described above, as the following example of Montenegro shows:
 
 ![Mainland](img/montenegro_mainland.png)
-<figcaption align = "center">Localization for Mainland China</figcaption>
 
 ![Taiwan](img/montenegro_taiwan.png)
-<figcaption align = "center">Localization for Taiwan</figcaption>
 
 
 ```{r}
