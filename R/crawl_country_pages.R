@@ -64,12 +64,14 @@ get_names <- function(variant, url_leaf = overview$url) {
 # scrape all names for each language variant
 crawl_country_pages <- function(overview_df) {
   # define language identifiers (used in URL)
-  variant <- c("zh-cn",
-               "zh-hk",
-               "zh-mo",
-               "zh-my",
-               "zh-sg",
-               "zh-tw")
+  variant <- c(
+    "zh_cn" = "zh-cn",
+    "zh_hk" = "zh-hk",
+    "zh_mo" = "zh-mo",
+    "zh_my" = "zh-my",
+    "zh_sg" = "zh-sg",
+    "zh_tw" = "zh-tw"
+    )
   
   # scrape all names for each language variant
   map_dfr(variant,
