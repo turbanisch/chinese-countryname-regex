@@ -69,3 +69,22 @@ get_names <- function(variant, url_leaf = overview$url) {
          full_name = unlist(full_name),
          variant)
 }
+
+# scrape all names for each language variant
+crawl_country_pages <- function(overview_df) {
+  # define language identifiers (used in URL)
+  variant <- c("zh-cn",
+               "zh-hk",
+               "zh-mo",
+               "zh-my",
+               "zh-sg",
+               "zh-tw")
+  
+  # scrape all names for each language variant
+  map_dfr(variant,
+          # get names and add English country name (read from right to left)
+          ~ overview_df %>% select(short_name_en) %>% bind_cols(get_names(.x)),
+          .id = "language") %>%
+    arrange(short_name_en, language) %>%
+    relocate(short_name_en)
+}
