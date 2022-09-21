@@ -1,14 +1,5 @@
-# helper function: strip non-Chinese text
-clean_chinese_text <- function(s) {
-  s %>%
-    # remove non-Chinese characters in parentheses (e.g. "(bi4)" for Peru)
-    str_remove_all("（[^\\p{script=Han}（）\\p{InCJK_Symbols_and_Punctuation}]+）") %>%
-    # remove leading non-Chinese characters (parsing gibberish) but allow full-width parentheses ("刚果（金）")
-    str_remove_all("^[^\\p{script=Han}（）\\p{InCJK_Symbols_and_Punctuation}]*") %>%
-    .[. != ""] %>%
-    # remove footnote artifacts
-    str_remove_all("\\[.*\\]")
-}
+# these functions take URLs from the overview page and crawl country name variants from the heading and first/second paragraph for each country
+# 'crawl_country_pages' is the highest-level function, all others are helper functions
 
 # helper function: collect country name variants (in bold, within first sentence) from a *single* Wikipedia paragraph
 try_get_names <- function(url, css_query) {
