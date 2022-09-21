@@ -1,5 +1,7 @@
 library(tidyverse)
 library(rvest)
+library(tmcn)
+library(PTXQC)
 
 walk(fs::dir_ls("R/"), source)
 
@@ -41,49 +43,78 @@ overview <- overview %>%
 overview
 
 
+# scrape country pages ----------------------------------------------------
 
-# rest --------------------------------------------------------------------
 
 # build urls to localized overview page
 variant <- c(
-  "zh-cn", # 大陆简体
-  "zh-hk", # 香港繁體
-  "zh-mo", # 澳門繁體
-  "zh-my", # 大马简体
-  "zh-sg", # 新加坡简体
-  "zh-tw" # 台灣整體
+  "大陆简体" = "zh-cn",
+  "香港繁體" = "zh-hk",
+  "澳門繁體" = "zh-mo",
+  "大马简体" = "zh-my",
+  "新加坡简体" = "zh-sg",
+  "台灣整體" = "zh-tw"
 )
 
+# scrape all names for each language variant
+dict <- map_dfr(variant,
+                # get names and add English country name
+                ~ overview %>% select(short_name_en) %>% bind_cols(get_names(.x)),
+                .id = "language") %>%
+  arrange(short_name_en, language) %>% 
+  relocate(short_name_en)
 
-# complete links to variant-specific site (here: simplified)
-str_c(base_url, variant[1], df$url, sep = "/")
+dict_wide <- dict %>% unnest_wider(variant, names_sep = "_")
 
-# apply function to all countries
-output <- map(
-  str_c(base_url, variant[1], df$url, sep = "/"),
-  get_names
-)
+# save
+write_rds(dict, "output/dict.rds")
+write_rds(dict_wide, "output/dict_wide.rds")
 
-# get short name from page heading
-get_short_name <- function(url) {
-  url %>% 
-    read_html() %>% 
-    html_element("h1#firstHeading") %>% 
-    html_text2()
-}
 
-short_name <- map(
-  str_c(base_url, variant[1], df$url, sep = "/"),
-  get_short_name
-)
+# find regexes ------------------------------------------------------------
 
-full_name <- map(output, 1)
-variant <- map(output, ~.x[-1]) %>% map2(short_name, ~setdiff(.x, .y))
+# convert everything to simplified and keep unique variants
+dict_variants <- dict_wide %>% 
+  pivot_longer(cols = short_name:last_col(),
+               names_to = "x", 
+               values_to = "name") %>% 
+  filter(!is.na(name)) %>% 
+  mutate(name = toTrad(name, rev = TRUE)) %>% 
+  distinct(short_name_en, name)
 
-scraped <- tibble(
-  short_name = unlist(short_name),
-  full_name = unlist(full_name),
-  variant
-)
+# find longest common substring
+dict_common <- dict_variants %>% 
+  group_by(short_name_en) %>% 
+  summarise(variant = list(c(name))) %>% 
+  mutate(common_string = map_chr(variant ,PTXQC::LCSn)) %>% 
+  unnest_longer(variant) %>% 
+  # pre-fill regex if one of the variants is a substring of all other variants
+  group_by(short_name_en) %>% 
+  mutate(regex = if_else(common_string %in% variant, common_string, ""))
 
-scraped %>% unnest_wider(variant)
+
+write_csv(dict_common, "output/dict_common.csv")
+
+
+# test regex --------------------------------------------------------------
+
+# load
+simplified_regex <- read_csv("data/dict_common_regex_simplified.csv") 
+
+simplified_regex <- simplified_regex %>% 
+  select(short_name_en, regex) %>% 
+  # first row contains regex
+  group_by(short_name_en) %>% 
+  filter(row_number() == 1L) %>% 
+  ungroup()
+
+# which ones were matched to a wrong country?
+dict_variants %>% 
+  fuzzyjoin::regex_left_join(simplified_regex, by = c("name" = "regex")) %>% 
+  filter(short_name_en.x != short_name_en.y)
+# only Taiwan's variant 中国
+
+# which ones could not be matched?
+dict_variants %>% 
+  fuzzyjoin::regex_anti_join(simplified_regex, by = c("name" = "regex"))
+# only the ones that I removed on purpose: outdated names (布鲁克巴, 波斯, 溜山), literal translations (冰封之岛, 奥特亚罗瓦) and ambiguous ones (刚果)
