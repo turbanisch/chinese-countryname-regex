@@ -37,6 +37,7 @@ This is especially true for proper names like country names. Not only can they v
 The issue of different scripts could be solved in two ways: either by harmonizing the scripts by some automatic conversion procedure or writing complex regular expressions that match any script. I discuss the two below in the section on testing my regular expressions and focus on the second issue here. 
 
 The issues of different transliterations and alternative country names call for the same solution: coming up with a list of country names from each Chinese-speaking region. The regular expressions need to be able to match each element of these lists. Luckily, Wikipedia not only records the official country name, the colloquial country name as well as name variants; it does so for flavors of Chinese from Mainland China, Hong Kong, Macau, Malaysia, Singapore and Taiwan.
+
 ![](img/language_dropdown.png)
 
 Wikipedia even offers an [overview page](https://zh.wikipedia.org/zh-cn/世界政區索引) with full and short country names. This page alone is not sufficient for two reasons. First, it does not include any name variants; second, it contains errors (Ghana's full name is written using the traditional character 迦 while the short name contains the simplified 加). But since the overview page provides links to the individual country pages, it can serve as an entry point for web crawling. 
