@@ -13,7 +13,7 @@ variants <- c(
 
 urls <- str_c("https://zh.wikipedia.org/", variants, "/世界政區索引")
 
-df <- urls[1] %>% 
+overview <- urls[1] %>% 
   read_html() %>% 
   html_elements("table") %>% 
   html_table() %>% 
@@ -22,7 +22,7 @@ df <- urls[1] %>%
   bind_rows()
 
 # clean
-df <- df %>% 
+overview <- overview %>% 
   rename(
     short_name_zh = 国家或地区,
     full_name_zh = 中文全称,
@@ -44,14 +44,14 @@ df <- df %>%
   relocate(iso3c, short_name_en)
 
 # find overlap between short and full name
-test <- df %>% select(ends_with("zh")) %>% head(3)
+test <- overview %>% select(ends_with("zh")) %>% head(3)
 test
 str_match(test$short_name_zh, test$full_name_zh)
 str_match("阿布哈兹", "阿布哈兹共和国")
 
 
-df %>% filter(!str_detect(full_name_zh, short_name_zh))
-df %>% filter(str_detect(full_name_zh, "法"))
+overview %>% filter(!str_detect(full_name_zh, short_name_zh))
+overview %>% filter(str_detect(full_name_zh, "法"))
 
 # cases
 # 1) short name is substring of full name -> keep short name as regex
