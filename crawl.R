@@ -96,7 +96,7 @@ dict_common <- dict_variants %>%
 write_csv(dict_common, "output/dict_common.csv")
 
 
-# test regex --------------------------------------------------------------
+# add regex ---------------------------------------------------------------
 
 # load
 simplified_regex <- read_csv("data/dict_common_regex_simplified.csv") 
@@ -108,6 +108,16 @@ simplified_regex <- simplified_regex %>%
   filter(row_number() == 1L) %>% 
   ungroup()
 
+# merge ISO codes
+simplified_regex <- overview %>% 
+  select(iso3c, short_name_en) %>% 
+  right_join(simplified_regex)
+
+write_csv(simplified_regex, "output/simplified_regex.csv")
+
+
+# test regex --------------------------------------------------------------
+
 # which ones were matched to a wrong country?
 dict_variants %>% 
   fuzzyjoin::regex_left_join(simplified_regex, by = c("name" = "regex")) %>% 
@@ -118,3 +128,6 @@ dict_variants %>%
 dict_variants %>% 
   fuzzyjoin::regex_anti_join(simplified_regex, by = c("name" = "regex"))
 # only the ones that I removed on purpose: outdated names (布鲁克巴, 波斯, 溜山), literal translations (冰封之岛, 奥特亚罗瓦) and ambiguous ones (刚果)
+
+
+
