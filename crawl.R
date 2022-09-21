@@ -1,6 +1,6 @@
 library(tidyverse)
 library(rvest)
-library(tmcn)
+library(ropencc)
 library(PTXQC)
 
 walk(fs::dir_ls("R/"), source)
@@ -40,8 +40,6 @@ overview <- overview %>%
   select(short_name_en = 英文简称, iso3c) %>% 
   add_column(url = country_urls)
   
-overview
-
 
 # scrape country pages ----------------------------------------------------
 
@@ -53,8 +51,8 @@ variant <- c(
   "澳門繁體" = "zh-mo",
   "大马简体" = "zh-my",
   "新加坡简体" = "zh-sg",
-  "台灣整體" = "zh-tw"
 )
+
 
 # scrape all names for each language variant
 dict <- map_dfr(variant,
@@ -79,7 +77,7 @@ dict_variants <- dict_wide %>%
                names_to = "x", 
                values_to = "name") %>% 
   filter(!is.na(name)) %>% 
-  mutate(name = toTrad(name, rev = TRUE)) %>% 
+  mutate(name = ropencc::converter(T2S)[name]) %>% 
   distinct(short_name_en, name)
 
 # find longest common substring
