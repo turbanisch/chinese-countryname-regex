@@ -14,14 +14,12 @@ write_csv(overview, "data/overview.csv")
 
 # crawl country pages (**takes a long time**)
 countrynames <- crawl_country_pages(overview)
-write_rds(countrynames, "data/countrynames.rds")
-
 countrynames_wide <- countrynames %>% unnest_wider(variant, names_sep = "_")
 write_csv(countrynames_wide, "data/countrynames.csv")
 
 # find longest common substrings among all variants (converted to simplified) to prepare regexes
 countrynames_lcs <- prepare_regex(countrynames_wide)
-write_csv(countrynames_lcs, "data/countrynames_lcs.csv")
+# write_csv(countrynames_lcs, "data/countrynames_lcs.csv")
 
 # add regexes (manually added based on the longest common substring)
 regexes <- read_and_clean_regex("data-raw/countrynames_lcs_regex.csv")
