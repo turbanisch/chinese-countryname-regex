@@ -143,15 +143,22 @@ only Taiwan’s variant 中国
 ## Overview
 
 ``` r
-variant <- c(
-  "大陆简体" = "zh-cn",
-  "香港繁體" = "zh-hk",
-  "澳門繁體" = "zh-mo",
-  "大马简体" = "zh-my",
-  "新加坡简体" = "zh-sg",
-  "臺灣正體" = "zh-tw"
-)
+tibble(
+  Code = c("zh-cn", "zh-hk", "zh-mo", "zh-my", "zh-sg", "zh-tw"),
+  Explanation = c("大陆简体", "香港繁體", "澳門繁體", "大马简体", "新加坡简体", "臺灣正體")
+) %>% knitr::kable(caption = "Language variant codes")
 ```
+
+| Code  | Explanation |
+|:------|:------------|
+| zh-cn | 大陆简体    |
+| zh-hk | 香港繁體    |
+| zh-mo | 澳門繁體    |
+| zh-my | 大马简体    |
+| zh-sg | 新加坡简体  |
+| zh-tw | 臺灣正體    |
+
+Language variant codes
 
 ## Making regexes work for traditional Chinese
 
