@@ -158,9 +158,10 @@ variants is not a one-to-one mapping. This is obviously true for the
 conversion from traditional to simplified characters but holds even in
 the opposite direction. However, to my knowledge there are only few
 cases in which a traditional character corresponds to multiple
-simplified ones[^1]
+simplified ones.[^1] Adjusting the regular expressions to accommodate
+these rare cases would not result in bloated regular expressions that
+are hard to maintain.
 
-Therefore, first converting to simplified (with the same engine that I
-used to create the regexes) is prefered.
-
-[^1]: 乾隆帝
+[^1]: For example, the traditional character 乾 remains the same if it
+    is part of the Qianlong emperor’s name 乾隆帝 but is simplified to
+    干 otherwise.
