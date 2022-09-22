@@ -100,7 +100,7 @@ the following example of Montenegro shows:
 5.  Test the regular expressions against all variants (in simplified
     Chinese) below.
 
-## Overview
+## File and variable descriptions
 
 ### Files
 
@@ -117,12 +117,12 @@ expressions and can be used as a conversion table is `dict.csv`.
 
 | Code  | Description (Chinese) | Description (English)   |
 |:------|:----------------------|:------------------------|
-| zh-cn | 大陆简体              | Mainland (simplified)   |
-| zh-hk | 香港繁體              | Hong Kong (traditional) |
-| zh-mo | 澳門繁體              | Macau (traditional)     |
-| zh-my | 大马简体              | Malaysia (simplified)   |
-| zh-sg | 新加坡简体            | Singapore (simplified)  |
-| zh-tw | 臺灣正體              | Taiwan (traditional)    |
+| zh_cn | 大陆简体              | Mainland (simplified)   |
+| zh_hk | 香港繁體              | Hong Kong (traditional) |
+| zh_mo | 澳門繁體              | Macau (traditional)     |
+| zh_my | 大马简体              | Malaysia (simplified)   |
+| zh_sg | 新加坡简体            | Singapore (simplified)  |
+| zh_tw | 臺灣正體              | Taiwan (traditional)    |
 
 ## Making regexes work for traditional Chinese
 
