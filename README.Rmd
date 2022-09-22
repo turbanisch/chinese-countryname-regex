@@ -78,12 +78,13 @@ tibble(
 
 ## Making regexes work for traditional Chinese
 
+As stated above, there are broadly to ways of making my regular expressions (in simplified Chinese) work for variants using traditional Chinese: first, a two-step approach that converts the input into simplified Chinese and then matches the regular expressions; and second, expanding the regular expressions themselves to capture any character variants.
+
+Although the two-step approach has some caveats, I prefer it over the second one. The reason for my preference comes down to better maintenance. The simplified regular expressions already contain case distinctions (e.g., `西班牙|(日斯|以西)(巴|把)(尼|你)亚`). By adding character variants by hand, the expressions would quickly become convoluted. Another question is feasibility: depending on your font, you might not even spot all character variants unless you employ some testing routines:
+
 ```{r}
 # different unicode character, invisible
 identical("阿布哈茲","阿布哈兹")
-
-# converting the regex into traditional (without specifying the exact variant) works in most cases but regexes become very long and hard to maintain (especially because someone might delete what seems like a duplicate but invisibly refers to different unicode characters)
-# str_detect("阿布哈茲", converter(S2T)["阿(布哈|柏克)兹"])
 ```
 
 
