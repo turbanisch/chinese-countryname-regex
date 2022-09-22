@@ -138,15 +138,29 @@ second one. The reason for my preference comes down to better
 maintenance. The simplified regular expressions already contain case
 distinctions (e.g., `西班牙|(日斯|以西)(巴|把)(尼|你)亚`). By adding
 character variants by hand, the expressions would quickly become
-convoluted. Another question is feasibility: depending on your font, you
-might not even spot all character variants unless you employ some
-testing routines:
+convoluted, making it hard to keep track of all six variants. Another
+question is feasibility: depending on your font, you might not even spot
+all character variants unless you employ some testing routines:
 
 ``` r
-# different unicode character, invisible
+# different unicode character, invisible depending on font
 identical("阿布哈茲","阿布哈兹")
 #> [1] FALSE
 ```
 
+With the two-step approach, maintenance is easy because it requires only
+one set of regular expressions. The drawbacks of this approach are
+two-fold. First, either the users have to take care of the conversion
+themselves or the conversion package (such as
+[OpenCC](https://github.com/BYVoid/OpenCC)) needs be added as a
+dependency to the function. Second, the conversion between character
+variants is not a one-to-one mapping. This is obviously true for the
+conversion from traditional to simplified characters but holds even in
+the opposite direction. However, to my knowledge there are only few
+cases in which a traditional character corresponds to multiple
+simplified ones[^1]
+
 Therefore, first converting to simplified (with the same engine that I
 used to create the regexes) is prefered.
+
+[^1]: 乾隆帝
