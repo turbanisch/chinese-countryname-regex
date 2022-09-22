@@ -89,11 +89,12 @@ only Taiwan's variant 中国
 
 ## Overview
 
-```{r}
+```{r, echo=FALSE}
 tibble(
   Code = c("zh-cn", "zh-hk", "zh-mo", "zh-my", "zh-sg", "zh-tw"),
-  Explanation = c("大陆简体", "香港繁體", "澳門繁體", "大马简体", "新加坡简体", "臺灣正體")
-) %>% knitr::kable(caption = "Language variant codes")
+  "Description (Chinese)" = c("大陆简体", "香港繁體", "澳門繁體", "大马简体", "新加坡简体", "臺灣正體"),
+  "Description (English)" = c("Mainland (simplified)", "Hong Kong (traditional)", "Macau (traditional)", "Malaysia (simplified)", "Singapore (simplified)", "Taiwan (traditional)")) %>% 
+  knitr::kable()
 ```
 
 ## Making regexes work for traditional Chinese
