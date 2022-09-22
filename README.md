@@ -1,11 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-``` r
-library(tidyverse)
-walk(fs::dir_ls("R/"), source)
-```
-
 # Regular expressions to match country names in Chinese
 
 <!-- badges: start -->
@@ -19,7 +14,7 @@ different parts of the world use different variants of Chinese, beyond
 the basic distinction between simplified and traditional characters.
 Mainland China, Malaysia and Singapore all use simplified characters
 whereas Hong Kong, Macau and Taiwan continue to use traditional
-characters - but local usage may vary within each group.
+characters – but local usage may vary within each group.
 
 This is especially true for proper names like country names. Not only
 can they vary character by character depending on the script that is
@@ -36,9 +31,9 @@ case:
     Chinese-speaking region have taken their artistic liberties when
     doing so. For example, Hong Kongers refer to Barbados as *Babaduosi*
     巴巴多斯 whereas people from Taiwan call it *Babeiduo* 巴貝多.
-3.  **Alternative names**. Instead of converting a country name
-    according to its sound, Chinese-speaking people in some regions have
-    also opted to convert the original meaning of the country name into
+3.  **Alternative names**. Instead of adapting a country name according
+    to its sound, Chinese-speaking people in some regions have also
+    opted to convert the original meaning of the country name into
     Chinese. For example, Montenegro is *Heishan* 黑山 (“black
     mountain”) in Mainland China. People on Taiwan, on the other hand,
     kept their phonetic transliteration *Mengteneigeluo* 蒙特內哥羅.
@@ -46,10 +41,10 @@ case:
 ## Proposed solution
 
 The issue of different scripts could be solved in two ways: either by
-harmonizing the scripts by some automatic conversion procedure or
+harmonizing the scripts with some automatic conversion procedure or
 writing complex regular expressions that match any script. I discuss the
-two below in the section on testing my regular expressions and focus on
-the second issue here.
+two approaches below in the section on testing my regular expressions
+and focus on the second issue here.
 
 The issues of different transliterations and alternative country names
 call for the same solution: coming up with a list of country names from
@@ -69,10 +64,10 @@ it does not include any name variants; second, it contains errors
 the short name contains the simplified 加).
 
 But since the overview page provides links to the individual country
-pages, it can serve as an entry point for web crawling. Wikipedia’s
-localization not only takes care of character-by-character conversion
-but also reflects differences in usage described above, as the following
-example of Montenegro shows:
+pages, it can serve as an entry point for web crawling. On each page,
+Wikipedia’s localization not only takes care of character-by-character
+conversion but also reflects differences in usage described above, as
+the following example of Montenegro shows:
 
 ![Mainland](img/montenegro_mainland.png)
 
@@ -90,18 +85,18 @@ example of Montenegro shows:
     matches one of the country name, I use it as the regular expression
     and overwrite it only in case of ambiguity (e.g., Congo 刚果).
 3.  Manually develop regular expressions including lookarounds to
-    distinguish the various Guineas and other shenanigans. Out of the
-    variants in my list, I only ignore transliterations from the local
-    language (e.g., *Aoteyaluowa* 奥特亚罗瓦 for New Zealand) and the
-    ones that are obviously outdated (such as *Bulukeba* 布魯克巴,
-    apparently used for Bhutan during the Qing dynasty). The resulting
-    regular expressions should be fairly specific but assume that the
-    input is a country name of some sort. Otherwise, the regular
-    expression for Western Sahara (`西撒哈拉|撒哈?拉.*民主共和国`) might
-    also match the geographical term for the western part of the Sahara
-    desert.  
+    distinguish the various Guineas and similar cases from each other.
+    Out of the variants in my list, I only ignore transliterations from
+    the local language (e.g., *Aoteyaluowa* 奥特亚罗瓦 for New Zealand)
+    and the ones that are obviously outdated (such as *Bulukeba*
+    布魯克巴, apparently used for Bhutan during the Qing dynasty). The
+    resulting regular expressions should be fairly specific but still
+    assume that the input is a country name of some sort. Otherwise, the
+    regular expression for Western Sahara
+    (`西撒哈拉|撒哈?拉.*民主共和国`) might also match the geographical
+    term for the western part of the Sahara desert, and so on.
 4.  Merge ISO3 codes and regular expressions to the conversion table
-    comprising all short and full names in all language variants.
+    comprising short and full names in all language variants.
 5.  Test the regular expressions against all variants (in simplified
     Chinese) below.
 
