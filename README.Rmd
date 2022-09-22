@@ -57,38 +57,17 @@ But since the overview page provides links to the individual country pages, it c
 4. Merge ISO3 codes and regular expressions to the conversion table comprising short and full names in all language variants.
 5. Test the regular expressions against all variants (in simplified Chinese) below.
 
-## Tests
-
-```{r, echo=FALSE}
-regexes <- read_and_clean_regex("data-raw/countrynames_lcs_regex.csv")
-countrynames_lcs <- read_csv("data/countrynames_lcs.csv")
-
-# `countrynames_lcs` contains all variants, converted into simplified Chinese
-matched <- countrynames_lcs %>%
-  select(short_name_en, variant) %>%
-  fuzzyjoin::regex_left_join(regexes, by = c("variant" = "regex"))
-```
-
-```{r}
-# which entries could not be matched?
-matched %>% filter(is.na(short_name_en.y))
-```
-Only the ones that I removed on purpose: outdated names (布鲁克巴, 波斯, 溜山), literal translations (冰封之岛, 奥特亚罗瓦) and ambiguous ones (刚果)
-
-```{r}
-# check if countries were matched more than once
-matched %>% janitor::get_dupes(short_name_en.x, variant)
-```
-
-```{r}
-# which entries were matched to a wrong country?
-matched %>%
-  filter(short_name_en.x != short_name_en.y)
-```
-only Taiwan's variant 中国
-
 ## Overview
 
+### Files
+
+All output files are saved in `data/`. The one that includes regular expressions and can be used as a conversion table is `dict.csv`.
+
+- `countrynames.csv`: Short name, full (official) name and name variants for each language variant
+- `dict.csv`: Only short and full (official) name for each language variant but including ISO3 codes and regular expressions. 
+- `overview.csv`: Links to country-specific Wikipedia pages.
+
+### Language variant codes
 ```{r, echo=FALSE}
 tibble(
   Code = c("zh-cn", "zh-hk", "zh-mo", "zh-my", "zh-sg", "zh-tw"),

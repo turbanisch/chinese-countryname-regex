@@ -100,47 +100,20 @@ the following example of Montenegro shows:
 5.  Test the regular expressions against all variants (in simplified
     Chinese) below.
 
-## Tests
-
-``` r
-# which entries could not be matched?
-matched %>% filter(is.na(short_name_en.y))
-#> # A tibble: 6 × 4
-#>   short_name_en.x     variant    short_name_en.y regex
-#>   <chr>               <chr>      <chr>           <chr>
-#> 1 Bhutan              布鲁克巴   <NA>            <NA> 
-#> 2 Congo (Brazzaville) 刚果       <NA>            <NA> 
-#> 3 Iceland             冰封之岛   <NA>            <NA> 
-#> 4 Iran                波斯       <NA>            <NA> 
-#> 5 Maldives            溜山       <NA>            <NA> 
-#> 6 New Zealand         奥特亚罗瓦 <NA>            <NA>
-```
-
-Only the ones that I removed on purpose: outdated names (布鲁克巴, 波斯,
-溜山), literal translations (冰封之岛, 奥特亚罗瓦) and ambiguous ones
-(刚果)
-
-``` r
-# check if countries were matched more than once
-matched %>% janitor::get_dupes(short_name_en.x, variant)
-#> # A tibble: 0 × 5
-#> # … with 5 variables: short_name_en.x <chr>, variant <chr>, dupe_count <int>,
-#> #   short_name_en.y <chr>, regex <chr>
-```
-
-``` r
-# which entries were matched to a wrong country?
-matched %>%
-  filter(short_name_en.x != short_name_en.y)
-#> # A tibble: 1 × 4
-#>   short_name_en.x variant short_name_en.y regex              
-#>   <chr>           <chr>   <chr>           <chr>              
-#> 1 Taiwan          中国    China           中国|中华人民共和国
-```
-
-only Taiwan’s variant 中国
-
 ## Overview
+
+### Files
+
+All output files are saved in `data/`. The one that includes regular
+expressions and can be used as a conversion table is `dict.csv`.
+
+-   `countrynames.csv`: Short name, full (official) name and name
+    variants for each language variant
+-   `dict.csv`: Only short and full (official) name for each language
+    variant but including ISO3 codes and regular expressions.
+-   `overview.csv`: Links to country-specific Wikipedia pages.
+
+### Language variant codes
 
 | Code  | Description (Chinese) | Description (English)   |
 |:------|:----------------------|:------------------------|
