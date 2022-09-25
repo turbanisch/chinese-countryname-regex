@@ -88,9 +88,9 @@ identical("阿布哈茲","阿布哈兹")
 With the two-step approach, maintenance is easy because it requires only one set of regular expressions. The drawbacks of this approach are two-fold. First, either the users have to take care of the conversion themselves or the conversion package (such as [OpenCC](https://github.com/BYVoid/OpenCC)) needs be added as a dependency to the function. Second, the conversion between character variants is not a one-to-one mapping. This is obviously true for the conversion from traditional to simplified characters but holds even in the opposite direction. However, to my knowledge there are only few cases in which a traditional character corresponds to multiple simplified ones.^[For example, the traditional character 乾 remains the same if it is part of the Qianlong emperor's name 乾隆帝 but is simplified to 干 otherwise.] Adjusting the regular expressions to accommodate these rare cases would not result in bloated regular expressions that are hard to maintain. 
 
 ## Implementation
-The go-to R package for the harmonization of country names and codes, [`countrycode`](https://github.com/vincentarelbundock/countrycode) does not yet include regular expressions for Chinese ([Issue #316](https://github.com/vincentarelbundock/countrycode/issues/316)), perhaps due to the challenges outlined above. 
+The go-to R package for the harmonization of country names and codes, [countrycode](https://github.com/vincentarelbundock/countrycode) does not yet include regular expressions for Chinese ([Issue #316](https://github.com/vincentarelbundock/countrycode/issues/316)), perhaps due to the challenges outlined above. 
 
-As a proof of concept, I have implemented a conversion function specifically for Chinese country names in [`chinautils`](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese). 
+As a proof of concept, I have implemented a conversion function specifically for Chinese country names in [chinautils](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese). 
 The function `countryname` identifies country names in Chinese and converts them to various standardized output formats, such as ISO3 codes. 
 It uses regular expressions to match country name variants in both simplified and traditional Chinese:
     

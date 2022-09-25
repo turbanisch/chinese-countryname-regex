@@ -165,14 +165,14 @@ are hard to maintain.
 ## Implementation
 
 The go-to R package for the harmonization of country names and codes,
-[`countrycode`](https://github.com/vincentarelbundock/countrycode) does
+[countrycode](https://github.com/vincentarelbundock/countrycode) does
 not yet include regular expressions for Chinese ([Issue
 \#316](https://github.com/vincentarelbundock/countrycode/issues/316)),
 perhaps due to the challenges outlined above.
 
 As a proof of concept, I have implemented a conversion function
 specifically for Chinese country names in
-[`chinautils`](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese).
+[chinautils](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese).
 The function `countryname` identifies country names in Chinese and
 converts them to various standardized output formats, such as ISO3
 codes. It uses regular expressions to match country name variants in
