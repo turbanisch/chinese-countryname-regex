@@ -162,6 +162,49 @@ simplified ones.[^1] Adjusting the regular expressions to accommodate
 these rare cases would not result in bloated regular expressions that
 are hard to maintain.
 
+## Implementation
+
+The go-to R package for the harmonization of country names and codes,
+[`countrycode`](https://github.com/vincentarelbundock/countrycode) does
+not yet include regular expressions for Chinese ([Issue
+\#316](https://github.com/vincentarelbundock/countrycode/issues/316)),
+perhaps due to the challenges outlined above.
+
+As a proof of concept, I have implemented a conversion function
+specifically for Chinese country names in
+[`chinautils`](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese).
+The function `countryname` identifies country names in Chinese and
+converts them to various standardized output formats, such as ISO3
+codes. It uses regular expressions to match country name variants in
+both simplified and traditional Chinese:
+
+``` r
+library(chinautils)
+
+# match variants in both simplified and traditional Chinese
+countryname(c("中国", "中华人民共和国", "亞東開化中國早"))
+#> ✔ Matched 3 out of 3 values.
+#> [1] "CHN" "CHN" "CHN"
+
+# regex ignore languages other than Chinese and ambiguous cases
+countryname(c("ドイツ国", "刚果"))
+#> ✖ Failed to match 2 out of 2 values.
+#> ℹ No match could be found for ドイツ国 and 刚果.
+#> [1] NA NA
+
+# get warned about potential pitfalls, such as multiple matches
+countryname(c("塞尔维亚和黑山", "捷克斯洛伐克", "德国德国"))
+#> ✖ Failed to match 2 out of 3 values.
+#> ℹ Multiple matches were found for 塞尔维亚和黑山 and 捷克斯洛伐克.
+#> [1] NA    NA    "DEU"
+
+# non-regex matching requires an exact match
+countryname(c("德国", "德国人"), origin = "short_name_zh_cn", destination = "short_name_en")
+#> ✖ Failed to match 1 out of 2 values.
+#> ℹ No match could be found for 德国人.
+#> [1] "Germany" NA
+```
+
 [^1]: For example, the traditional character 乾 remains the same if it
     is part of the Qianlong emperor’s name 乾隆帝 but is simplified to
     干 otherwise.
