@@ -33,7 +33,7 @@ regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
 write_csv(regex_suggestions, "data/regex_suggestions.csv")
 
 # prepare full conversion table (add iso3c from overview + manually added regexes)
-dict <- build_dict(countrynames_wide, overview, regexes)
+dict <- build_dict(regexes)
 write_csv(dict, "data/dict.csv")
 
 
