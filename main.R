@@ -2,6 +2,7 @@ library(tidyverse)
 library(rvest)
 library(ropencc)
 library(PTXQC)
+library(fuzzyjoin)
 
 walk(fs::dir_ls("R/"), source)
 
@@ -29,35 +30,29 @@ write_csv(variants_simplified, "data/variants_simplified.csv")
 regexes <- read_csv("data-raw/regexes.csv", col_types = cols(.default = col_character()))
 
 # if regex need to be updated: prepare table to find regexes
-regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
-write_csv(regex_suggestions, "data/regex_suggestions.csv")
+# regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
+# write_csv(regex_suggestions, "data/regex_suggestions.csv")
 
-# prepare full conversion table (add iso3c from overview + manually added regexes)
+# prepare full conversion table
 dict <- build_dict(regexes)
 write_csv(dict, "data/dict.csv")
 
 
 # test regex --------------------------------------------------------------
 
-# `variants_simplified` contains all variants, converted into simplified Chinese
-matched <- variants_simplified %>%
-  select(short_name_en, variant) %>%
-  fuzzyjoin::regex_left_join(regexes, by = c("variant" = "regex"))
+# 1. there is only a single regular expression for each country
+regexes %>% count(iso3c) %>% filter(n > 1) %>% nrow()
 
-# which entries could not be matched?
-matched %>%
-  filter(is.na(short_name_en.y))
-# only the ones that I removed on purpose: outdated names (布鲁克巴, 波斯, 溜山), literal translations (冰封之岛, 奥特亚罗瓦) and ambiguous ones (刚果)
+# 2. every regex has at least one simplified variant to test on
+regexes %>% anti_join(variants_simplified, by = "iso3c") %>% nrow()
 
-# check if countries were matched more than once
-matched %>%
-  janitor::get_dupes(short_name_en.x, variant)
-# none
+# 3. every relevant variant in simplified Chinese has at least one regex match
+variants_simplified %>% 
+  regex_anti_join(regexes, by = c("name" = "regex")) %>% 
+  nrow()
 
-# which entries were matched to a wrong country?
-matched %>%
-  filter(short_name_en.x != short_name_en.y)
-# only Taiwan's variant 中国
-
-
-
+# 4. there are no false regex matches (i.e., each variant is matched by exactly one regex because of 2.)
+variants_simplified %>% 
+  regex_left_join(regexes, by = c("name" = "regex")) %>% 
+  filter(iso3c.x != iso3c.y) %>% 
+  nrow()

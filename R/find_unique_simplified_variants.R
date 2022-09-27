@@ -24,7 +24,7 @@ find_unique_simplified_variants <- function(countrynames_df) {
     # 清朝史籍稱布魯克巴, remove
     filter(name != "布鲁克巴") %>% 
     # 國名直譯為冰封之島, remove
-    filter(name != "冰封之") %>% 
+    filter(name != "冰封之地") %>% 
     # 1501年之前很长一段历史时间被外界称波斯, remove
     filter(name != "波斯") %>% 
     # 古称溜山, remove
@@ -32,5 +32,13 @@ find_unique_simplified_variants <- function(countrynames_df) {
     # 毛利语：Aotearoa，奥特亚罗瓦, remove
     filter(name != "奥特亚罗瓦") %>% 
     # 舊称暹罗, remove
-    filter(name != "暹罗")
+    filter(name != "暹罗") %>% 
+    # Congo ambiguous (DRC vs. Republic)
+    filter(name != "刚果") %>% 
+    # 旧称尤宁群岛（Union Islands）
+    filter(name != "尤宁群岛") %>% 
+    # 圭亚那 belongs to GUY
+    filter(!(iso3c == "GUF" & name == "圭亚那")) %>% 
+    # ambiguous between MAF and SXM
+    filter(name != "圣马丁")
 }
