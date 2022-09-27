@@ -76,8 +76,8 @@ crawl_country_pages <- function(overview_df) {
   # scrape all names for each language variant
   map_dfr(variant,
           # get names and add English country name (read from right to left)
-          ~ overview_df %>% select(short_name_en) %>% bind_cols(get_names(.x)),
+          ~ overview_df %>% select(iso3c) %>% bind_cols(get_names(.x)),
           .id = "language") %>%
-    arrange(short_name_en, language) %>%
-    relocate(short_name_en)
+    arrange(iso3c, language) %>%
+    relocate(iso3c)
 }
