@@ -9,7 +9,7 @@ walk(fs::dir_ls("R/"), source)
 
 # scrape country overview page (using the simplified (PRC) version)
 # alternative permalink: https://zh.wikipedia.org/w/index.php?title=世界政區索引&oldid=73732739
-overview <- scrape_overview("https://zh.wikipedia.org/zh-cn/世界政區索引")
+overview <- scrape_overview("https://zh.wikipedia.org/zh-cn/ISO_3166-1三位字母代码")
 write_csv(overview, "data/overview.csv")
 
 # crawl country pages (**takes a long time**)
