@@ -52,12 +52,6 @@ variants_simplified %>%
   nrow()
 
 
-# prepare full conversion table -------------------------------------------
-
-dict <- build_dict(regexes)
-write_csv(dict, "data/dict.csv")
-
-
 # prepare table to find regexes from scratch ------------------------------
 
 # if regex need to be updated (e.g., in case of greater coverage), use this

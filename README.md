@@ -99,15 +99,19 @@ Montenegro shows:
 ### Files
 
 All output files are saved in `data/`. The regular expressions added
-manually to ISO3 codes are in `data-raw/regexes.csv`. `dict.csv` differs
-from this file by including additional columns (e.g., country name in
-English) to create a more comprehensive conversion table.
+manually to ISO3 codes are in `data-raw/regexes.csv`. Feel free to merge
+other variables (such as short and long country names) using `iso3c` as
+the merge key to come up with a conversion table that suits your needs.
 
 - `overview.csv`: Links to country-specific Wikipedia pages.
 - `countrynames.csv`: Short name, full (official) name and name variants
   for each language variant
-- `dict.csv`: Only ISO3 codes, country name in English and regular
-  expressions.
+- `variants_simplified`: List of unique country name variants in
+  simplified Chinese that can be used to test the regular expressions.
+  The list is based on `countrynames.csv` but has been tweaked to
+  include only entries that should be matched by the regular
+  expressions. This involves removing ambiguous or outdated variants
+  found by web crawling and adding missing ones (such as 台湾 for TWN).
 
 ### Language variant codes
 
