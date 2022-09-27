@@ -14,7 +14,11 @@ write_csv(overview, "data/overview.csv")
 
 # crawl country pages (**takes a long time**)
 countrynames <- crawl_country_pages(overview)
-countrynames_wide <- countrynames %>% unnest_wider(variant, names_sep = "_")
+
+countrynames_wide <- countrynames %>% 
+  unnest_wider(variant, names_sep = "_") %>% 
+  repair_countrynames()
+
 write_csv(countrynames_wide, "data/countrynames.csv")
 
 # find longest common substrings among all variants (converted to simplified) to prepare regexes
