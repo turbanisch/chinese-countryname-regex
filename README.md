@@ -56,18 +56,14 @@ Kong, Macau, Malaysia, Singapore and Taiwan.
 
 ![](img/language_dropdown.png)
 
-Wikipedia even offers an [overview
-page](https://zh.wikipedia.org/zh-cn/世界政區索引) with full and short
-country names. This page alone is not sufficient for two reasons. First,
-it does not include any name variants; second, it contains errors
-(Ghana’s full name is written using the traditional character 迦 while
-the short name contains the simplified 加).
-
-But since the overview page provides links to the individual country
-pages, it can serve as an entry point for web crawling. On each page,
-Wikipedia’s localization not only takes care of character-by-character
-conversion but also reflects differences in usage described above, as
-the following example of Montenegro shows:
+Wikipedia offers an [overview
+page](https://zh.wikipedia.org/wiki/ISO_3166-1三位字母代码) of ISO3
+country codes and (short) country names. This overview does not cover
+variants of the country names but it can serve as an entry point for web
+crawling. On each country-specific page, Wikipedia’s localization not
+only takes care of character-by-character conversion but also reflects
+differences in usage described above, as the following example of
+Montenegro shows:
 
 ![Mainland](img/montenegro_mainland.png)
 
@@ -95,23 +91,23 @@ the following example of Montenegro shows:
     regular expression for Western Sahara
     (`西撒哈拉|撒哈?拉.*民主共和国`) might also match the geographical
     term for the western part of the Sahara desert, and so on.
-4.  Merge ISO3 codes and regular expressions to the conversion table
-    comprising short and full names in all language variants.
-5.  Test the regular expressions against all variants (in simplified
-    Chinese) below.
+4.  Test the regular expressions against all variants (in simplified
+    Chinese).
 
 ## File and variable descriptions
 
 ### Files
 
-All output files are saved in `data/`. The one that includes regular
-expressions and can be used as a conversion table is `dict.csv`.
+All output files are saved in `data/`. The regular expressions added
+manually to ISO3 codes are in `data-raw/regexes.csv`. `dict.csv` differs
+from this file by including additional columns (e.g., country name in
+English) to create a more comprehensive conversion table.
 
--   `countrynames.csv`: Short name, full (official) name and name
-    variants for each language variant
--   `dict.csv`: Only short and full (official) name for each language
-    variant but including ISO3 codes and regular expressions.
--   `overview.csv`: Links to country-specific Wikipedia pages.
+- `overview.csv`: Links to country-specific Wikipedia pages.
+- `countrynames.csv`: Short name, full (official) name and name variants
+  for each language variant
+- `dict.csv`: Only ISO3 codes, country name in English and regular
+  expressions.
 
 ### Language variant codes
 
@@ -174,9 +170,9 @@ As a proof of concept, I have implemented a conversion function
 specifically for Chinese country names in
 [chinautils](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese).
 The function `countryname` identifies country names in Chinese and
-converts them to various standardized output formats, such as ISO3
-codes. It uses regular expressions to match country name variants in
-both simplified and traditional Chinese:
+converts them to standardized output formats, such as ISO3 codes. It
+uses regular expressions to match country name variants in both
+simplified and traditional Chinese:
 
 ``` r
 library(chinautils)
@@ -197,12 +193,6 @@ countryname(c("塞尔维亚和黑山", "捷克斯洛伐克", "德国德国"))
 #> ✖ Failed to match 2 out of 3 values.
 #> ℹ Multiple matches were found for 塞尔维亚和黑山 and 捷克斯洛伐克.
 #> [1] NA    NA    "DEU"
-
-# non-regex matching requires an exact match
-countryname(c("德国", "德国人"), origin = "short_name_zh_cn", destination = "short_name_en")
-#> ✖ Failed to match 1 out of 2 values.
-#> ℹ No match could be found for 德国人.
-#> [1] "Germany" NA
 ```
 
 [^1]: For example, the traditional character 乾 remains the same if it

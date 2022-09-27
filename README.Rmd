@@ -39,9 +39,7 @@ The issues of different transliterations and alternative country names call for 
 
 ![](img/language_dropdown.png)
 
-Wikipedia even offers an [overview page](https://zh.wikipedia.org/zh-cn/世界政區索引) with full and short country names. This page alone is not sufficient for two reasons. First, it does not include any name variants; second, it contains errors (Ghana's full name is written using the traditional character 迦 while the short name contains the simplified 加). 
-
-But since the overview page provides links to the individual country pages, it can serve as an entry point for web crawling. On each page, Wikipedia's localization not only takes care of character-by-character conversion but also reflects differences in usage described above, as the following example of Montenegro shows:
+Wikipedia offers an [overview page](https://zh.wikipedia.org/wiki/ISO_3166-1三位字母代码) of ISO3 country codes and (short) country names. This overview does not cover variants of the country names but it can serve as an entry point for web crawling. On each country-specific page, Wikipedia's localization not only takes care of character-by-character conversion but also reflects differences in usage described above, as the following example of Montenegro shows:
 
 ![Mainland](img/montenegro_mainland.png)
 
@@ -52,18 +50,17 @@ But since the overview page provides links to the individual country pages, it c
 1. Scrape country names from each country page (in each language variant). I use the article heading as the short name, the first name in the first sentence as the official name, and all other names in the first sentence (typeset in bold) as name variants. 
 2. Convert all country names to simplified characters and identify the longest common substring. This substring serves as a basis for developing regular expressions manually. If a substring entirely matches one of the country name, I use it as the regular expression and overwrite it only in case of ambiguity (e.g., Congo 刚果).
 3. Manually develop regular expressions including lookarounds to distinguish the various Guineas and similar cases from each other. Out of the variants in my list, I only ignore transliterations from the local language (e.g., *Aoteyaluowa* 奥特亚罗瓦 for New Zealand) and the ones that are obviously outdated (such as *Bulukeba* 布魯克巴, apparently used for Bhutan during the Qing dynasty). The resulting regular expressions should be fairly specific but still assume that the input is a country name of some sort. Otherwise, the regular expression for Western Sahara (`西撒哈拉|撒哈?拉.*民主共和国`) might also match the geographical term for the western part of the Sahara desert, and so on.
-4. Merge ISO3 codes and regular expressions to the conversion table comprising short and full names in all language variants.
-5. Test the regular expressions against all variants (in simplified Chinese) below.
+4. Test the regular expressions against all variants (in simplified Chinese).
 
 ## File and variable descriptions
 
 ### Files
 
-All output files are saved in `data/`. The one that includes regular expressions and can be used as a conversion table is `dict.csv`.
+All output files are saved in `data/`. The regular expressions added manually to ISO3 codes are in `data-raw/regexes.csv`. `dict.csv` differs from this file by including additional columns (e.g., country name in English) to create a more comprehensive conversion table.
 
-- `countrynames.csv`: Short name, full (official) name and name variants for each language variant
-- `dict.csv`: Only short and full (official) name for each language variant but including ISO3 codes and regular expressions. 
 - `overview.csv`: Links to country-specific Wikipedia pages.
+- `countrynames.csv`: Short name, full (official) name and name variants for each language variant
+- `dict.csv`: Only ISO3 codes, country name in English and regular expressions. 
 
 ### Language variant codes
 ```{r, echo=FALSE}
@@ -91,7 +88,7 @@ With the two-step approach, maintenance is easy because it requires only one set
 The go-to R package for the harmonization of country names and codes, [countrycode](https://github.com/vincentarelbundock/countrycode) does not yet include regular expressions for Chinese ([Issue #316](https://github.com/vincentarelbundock/countrycode/issues/316)), perhaps due to the challenges outlined above. 
 
 As a proof of concept, I have implemented a conversion function specifically for Chinese country names in [chinautils](https://github.com/turbanisch/chinautils#harmonize-country-names-in-chinese). 
-The function `countryname` identifies country names in Chinese and converts them to various standardized output formats, such as ISO3 codes. 
+The function `countryname` identifies country names in Chinese and converts them to standardized output formats, such as ISO3 codes. 
 It uses regular expressions to match country name variants in both simplified and traditional Chinese:
     
 ```{r}
@@ -105,7 +102,4 @@ countryname(c("ドイツ国", "刚果"))
 
 # get warned about potential pitfalls, such as multiple matches
 countryname(c("塞尔维亚和黑山", "捷克斯洛伐克", "德国德国"))
-
-# non-regex matching requires an exact match
-countryname(c("德国", "德国人"), origin = "short_name_zh_cn", destination = "short_name_en")
 ```
