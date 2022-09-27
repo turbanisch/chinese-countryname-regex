@@ -21,12 +21,16 @@ countrynames_wide <- countrynames %>%
 
 write_csv(countrynames_wide, "data/countrynames.csv")
 
-# find longest common substrings among all variants (converted to simplified) to prepare regexes
-countrynames_lcs <- prepare_regex(countrynames_wide)
-# write_csv(countrynames_lcs, "data/countrynames_lcs.csv")
+# find regex test set (= unique variants in simplified Chinese)
+variants_simplified <- find_unique_simplified_variants(countrynames_wide)
+write_csv(variants_simplified, "data/variants_simplified.csv")
 
-# add regexes (manually added based on the longest common substring)
-regexes <- read_and_clean_regex("data-raw/countrynames_lcs_regex.csv")
+# load existing regexes
+regexes <- read_csv("data-raw/regexes.csv", col_types = cols(.default = col_character()))
+
+# if regex need to be updated: prepare table to find regexes
+regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
+write_csv(regex_suggestions, "data/regex_suggestions.csv")
 
 # prepare full conversion table (add iso3c from overview + manually added regexes)
 dict <- build_dict(countrynames_wide, overview, regexes)
@@ -35,8 +39,8 @@ write_csv(dict, "data/dict.csv")
 
 # test regex --------------------------------------------------------------
 
-# `countrynames_lcs` contains all variants, converted into simplified Chinese
-matched <- countrynames_lcs %>%
+# `variants_simplified` contains all variants, converted into simplified Chinese
+matched <- variants_simplified %>%
   select(short_name_en, variant) %>%
   fuzzyjoin::regex_left_join(regexes, by = c("variant" = "regex"))
 
