@@ -6,7 +6,7 @@ library(fuzzyjoin)
 
 walk(fs::dir_ls("R/"), source)
 
-# scrape and build dict ---------------------------------------------------
+# scrape country name variants --------------------------------------------
 
 # scrape country overview page (using the simplified (PRC) version)
 # alternative permalink: https://zh.wikipedia.org/w/index.php?title=世界政區索引&oldid=73732739
@@ -22,21 +22,15 @@ countrynames_wide <- countrynames %>%
 
 write_csv(countrynames_wide, "data/countrynames.csv")
 
+
+# load regexes and define test set ----------------------------------------
+
 # find regex test set (= unique variants in simplified Chinese)
 variants_simplified <- find_unique_simplified_variants(countrynames_wide)
 write_csv(variants_simplified, "data/variants_simplified.csv")
 
 # load existing regexes
 regexes <- read_csv("data-raw/regexes.csv", col_types = cols(.default = col_character()))
-
-# if regex need to be updated: prepare table to find regexes
-# regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
-# write_csv(regex_suggestions, "data/regex_suggestions.csv")
-
-# prepare full conversion table
-dict <- build_dict(regexes)
-write_csv(dict, "data/dict.csv")
-
 
 # test regex --------------------------------------------------------------
 
@@ -56,3 +50,19 @@ variants_simplified %>%
   regex_left_join(regexes, by = c("name" = "regex")) %>% 
   filter(iso3c.x != iso3c.y) %>% 
   nrow()
+
+
+# prepare full conversion table -------------------------------------------
+
+dict <- build_dict(regexes)
+write_csv(dict, "data/dict.csv")
+
+
+# prepare table to find regexes from scratch ------------------------------
+
+# if regex need to be updated (e.g., in case of greater coverage), use this
+# otherwise modify data-raw/regexes.csv and run tests iteratively
+
+regex_suggestions <- prepare_regex(variants_simplified, old_regex = regexes)
+write_csv(regex_suggestions, "data/regex_suggestions.csv")
+
